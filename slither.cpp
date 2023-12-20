@@ -10,6 +10,7 @@ int h, v;//co-ordinate of food
 char ch = 'd';//save the present direction of snake
 int len = 3;//length of snake's head
 char f;//Save the direction variable
+//Function of appear food on random posistion
 void getFood()
 {
     h = rand() % 10;//Create the location of food inside from 0 -> 9
@@ -19,4 +20,23 @@ void getFood()
         getFood();//then relocate the posistion of food
     }
     state[h][v] = 3;//else, this is the posistion
+}
+//Function of print play state
+void printState()
+{
+	for(int i = 0; i < len; i++)
+	{
+		state[H[i]][Z[i]] = 1;//the posistion that the snake has go through is mark by number 1 - is Char of 'start of heading'
+	}
+	for(int i = 0; i < 10; i++)
+	{
+		for(int j = 0; j < 20; j++)
+		{
+			printf("%c", state[i][j]);
+		}
+		printf("\n");
+	}
+	//make move animation for snake
+	Sleep(500); //Pause the program in 0.5s to create late effect between frame
+	system("cls");
 }
