@@ -64,8 +64,8 @@ void left()
 	state[H[0]][Z[0]] = '-';//assign '-' into snake's head location before move
 	for(int i = 0; i < len - 1; i++)//start a loop to move the snake to the left side
 	{
-		Z[i] = Z[i - 1];
-		H[i] = H[i - 1]; 
+		Z[i] = Z[i + 1];
+		H[i] = H[i + 1]; 
 	}
 	Z[len - 1]--;//move snake's head into left side
 }
@@ -79,6 +79,17 @@ void right()
 		H[i] = H[i + 1]; 
 	}
 	Z[len - 1]++;//move snake's head into right side
+}
+//Function of up direction
+void up()
+{
+	state[H[0]][Z[0]] = '-';//assign '-' into snake's head location before move
+	for(int i = 0; i < len - 1; i++)//start a loop to move the snake to the left side
+	{
+		Z[i] = Z[i + 1];
+		H[i] = H[i + 1]; 
+	}
+	H[len - 1]--;//move snake's head into right side
 }
 int main()
 {
