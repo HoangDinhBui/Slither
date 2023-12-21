@@ -4,8 +4,8 @@
 #include <time.h>
 #include <windows.h>
 char state[10][20];//Save game state
-int H[20];//co-ordinate of snake
-int Z[20];//co-ordinate of snake
+int H[20];//co-ordinate of snake, long = y
+int Z[20];//co-ordinate of snake, wide = x
 int h, v;//co-ordinate of food
 char ch = 'd';//save the present direction of snake
 int len = 3;//length of snake's head
@@ -57,4 +57,14 @@ void getKey()
 		else
 			getKey();
 	}
+}
+//Fucntion of left direction
+void left()
+{
+	state[H[0]][Z[0]] = '-';//assign '-' into snake's head location before move
+	for(int i = 0; i < len - 1; i++)//start a loop to move the snake to the left side
+	{
+		Z[i] = Z[i + 1]; //x = x + 1
+	}
+	Z[len - 1]--;//move snake's head into left side
 }
