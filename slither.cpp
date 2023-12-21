@@ -81,3 +81,32 @@ void right()
 	Z[len - 1]++;//move snake's head into right side
 }
 int main()
+{
+	f = ch;//initialization first direction
+	for(int i = 0; i < 10; i++)
+	{
+		for(int j = 0; j < 20; j++)
+		{
+			state[i][j] = '-';//initialization the play state with '-'
+		}
+	}
+	for(int i = 0; i < 10; i++)//initialization array to save snake location
+	{
+		Z[i] = 0;
+		H[i] = 0;
+	}
+	for(int i = 0; i < len; i++)//initialization first length and location of snake
+		Z[i] = i;
+	getFood();
+	printf("Enter the point that you want to win: ");
+	int point;
+	scanf("%d", &point);
+	while(len <= point)
+	{
+		getKey();
+		if(state[h][v] != 3)
+		{
+			getFood();
+		}
+	}
+}
