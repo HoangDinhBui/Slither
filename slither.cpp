@@ -92,7 +92,7 @@ void up()
 	H[len - 1]--;//move snake's head into up side
 }
 //Function of down direction
-void up()
+void down()
 {
 	state[H[0]][Z[0]] = '-';//assign '-' into snake's head location before move
 	for(int i = 0; i < len - 1; i++)//start a loop to move the snake to the down side
@@ -130,5 +130,72 @@ int main()
 		{
 			getFood();
 		}
+		switch(f)
+		{
+			case 'w':
+				if(H[len - 1] - 1 < 0)
+				{
+					printf("You're touch the wall!");
+					return 0;
+				}
+				else if(H[len - 1] - 1 == h && Z[len - 1] == v)//if the snake eat food
+				{
+					H[len] = h;
+					Z[len] = v;
+					len++;
+					break;
+				} 
+				up();
+				break;
+			case 's':
+				if(H[len - 1] - 1 >= 10)
+				{
+					printf("You're touch the wall!");
+					return 0;
+				}
+				else if(H[len - 1] + 1 == h && Z[len - 1] == v)//if the snake eat food
+				{
+					H[len] = h;
+					Z[len] = v;
+					len++;
+					break;
+				} 
+				down();
+				break;
+			case 'a':
+				if(Z[len - 1] - 1 < 0)
+				{
+					printf("You're touch the wall!");
+					return 0;
+				}
+				else if(H[len - 1] == h && Z[len - 1] - 1 == v)//if the snake eat food
+				{
+					H[len] = h;
+					Z[len] = v;
+					len++;
+					break;
+				} 
+				left();
+				break;
+			case 'd':
+				if(Z[len - 1] - 1 < 0)
+				{
+					printf("You're touch the wall!");
+					return 0;
+				}
+				else if(H[len - 1] == h && Z[len - 1] + 1== v)//if the snake eat food
+				{
+					H[len] = h;
+					Z[len] = v;
+					len++;
+					break;
+				} 
+				right();
+				break;
+		}
+		printState();
 	}
+	printf("You Win!");
+	system("Pause");
+	return 0;
 }
