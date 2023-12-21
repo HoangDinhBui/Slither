@@ -40,3 +40,21 @@ void printState()
 	Sleep(500); //Pause the program in 0.5s to create late effect between frame
 	system("cls");
 }
+//Function of check to see if any key are available
+void getKey()
+{
+	if(_kbhit())//_khbit() is function of check to see if any key are available
+	{
+		ch = _getch();//get char is pressed
+		if(ch == f)
+		{
+			getKey();
+		}
+		else if((ch == 100 && f != 97)||(ch == 97 && ch != 100)||(ch == 115 && ch != 119)||(ch != 115 && ch == 119))
+		{
+			f = ch;
+		}
+		else
+			getKey();
+	}
+}
