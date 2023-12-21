@@ -10,6 +10,18 @@ int h, v;//co-ordinate of food
 char ch = 'd';//save the present direction of snake
 int len = 3;//length of snake's head
 char f;//Save the direction variable
+//Function of make color
+void SET_COLOR(int color)
+{
+	WORD wColor;
+     HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+     CONSOLE_SCREEN_BUFFER_INFO csbi;
+     if(GetConsoleScreenBufferInfo(hStdOut, &csbi))
+     {
+          wColor = (csbi.wAttributes & 0xF0) + (color & 0x0F);
+          SetConsoleTextAttribute(hStdOut, wColor);
+     }
+}
 //Function of appear food on random posistion
 void getFood()
 {
@@ -19,14 +31,16 @@ void getFood()
     {
         getFood();//then relocate the posistion of food
     }
-    state[h][v] = 3;//else, this is the posistion
+	SET_COLOR(10);
+    state[h][v] = 'o';//else, this is the posistion
 }
 //Function of print play state
 void printState()
 {
 	for(int i = 0; i < len; i++)
 	{
-		state[H[i]][Z[i]] = 1;//the posistion that the snake has go through is mark by number 1 - is Char of 'start of heading'
+		SET_COLOR(14);
+		state[H[i]][Z[i]] = '#';//the posistion that the snake has go through is mark by number 1 - is Char of 'start of heading'
 	}
 	for(int i = 0; i < 10; i++)
 	{
@@ -126,7 +140,7 @@ int main()
 	while(len <= point)
 	{
 		getKey();
-		if(state[h][v] != 3)
+		if(state[h][v] != 'o')
 		{
 			getFood();
 		}
