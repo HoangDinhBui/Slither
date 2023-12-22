@@ -149,6 +149,7 @@ int main()
 			case 'w':
 				if(H[len - 1] - 1 < 0)
 				{
+					SET_COLOR(4);
 					printf("You're touch the wall!");
 					return 0;
 				}
@@ -162,8 +163,9 @@ int main()
 				up();
 				break;
 			case 's':
-				if(H[len - 1] - 1 >= 10)
+				if(H[len - 1] + 1 >= 10)
 				{
+					SET_COLOR(4);
 					printf("You're touch the wall!");
 					return 0;
 				}
@@ -179,6 +181,7 @@ int main()
 			case 'a':
 				if(Z[len - 1] - 1 < 0)
 				{
+					SET_COLOR(4);
 					printf("You're touch the wall!");
 					return 0;
 				}
@@ -192,8 +195,9 @@ int main()
 				left();
 				break;
 			case 'd':
-				if(Z[len - 1] - 1 < 0)
+				if(Z[len - 1] + 1 >= 20)
 				{
+					SET_COLOR(4);
 					printf("You're touch the wall!");
 					return 0;
 				}
