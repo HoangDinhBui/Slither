@@ -35,7 +35,7 @@ void getFood()
     state[h][v] = 'o';//else, this is the posistion
 }
 //Function of print play state
-void printState()
+void printState(int speed)
 {
 	for(int i = 0; i < len; i++)
 	{
@@ -51,7 +51,7 @@ void printState()
 		printf("\n");
 	}
 	//make move animation for snake
-	Sleep(500); //Pause the program in 0.5s to create late effect between frame
+	Sleep(speed); //Pause the program in 0.5s to create late effect between frame
 	system("cls");
 }
 //Function of check to see if any key are available
@@ -131,6 +131,9 @@ int main()
 {
 	//while(playAgain())
 	//{
+		int speed;
+		printf("Enter the level of difficult: ");
+		scanf("%d", &speed);
 		f = ch;//initialization first direction
 		for(int i = 0; i < 10; i++)
 		{
@@ -226,7 +229,7 @@ int main()
 					right();
 					break;
 			}
-			printState();
+			printState(speed);
 		}
 		printf("You Win!\n");
 		system("Pause");
