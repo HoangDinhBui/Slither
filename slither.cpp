@@ -134,6 +134,11 @@ int main()
 		int speed;
 		printf("Enter the level of difficult: ");
 		scanf("%d", &speed);
+		if(speed < 100 || speed > 1000)
+		{
+			printf("The difficult level is not valid!");
+			return 0;
+		}
 		f = ch;//initialization first direction
 		for(int i = 0; i < 10; i++)
 		{
