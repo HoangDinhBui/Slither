@@ -92,7 +92,7 @@ void right()
 		Z[i] = Z[i + 1];
 		H[i] = H[i + 1]; 
 	}
-	Z[len - 1]++;//move snake's head into right side
+	Z[len - 1]++;//move snake's head into right side	
 }
 //Function of up direction
 void up()
@@ -116,104 +116,120 @@ void down()
 	}
 	H[len - 1]++;//move snake's head into down side
 }
+bool playAgain()
+{
+	char choice;
+	scanf("%c", &choice);
+	if(choice != 'y' && choice != 'Y')
+	{
+		printf("You're existing the game!\n");
+		return false;
+	}
+	return true;
+}
 int main()
 {
-	f = ch;//initialization first direction
-	for(int i = 0; i < 10; i++)
-	{
-		for(int j = 0; j < 20; j++)
+	//while(playAgain())
+	//{
+		f = ch;//initialization first direction
+		for(int i = 0; i < 10; i++)
 		{
-			state[i][j] = '-';//initialization the play state with '-'
+			for(int j = 0; j < 20; j++)
+			{
+				state[i][j] = '-';//initialization the play state with '-'
+			}
 		}
-	}
-	for(int i = 0; i < 10; i++)//initialization array to save snake location
-	{
-		Z[i] = 0;
-		H[i] = 0;
-	}
-	for(int i = 0; i < len; i++)//initialization first length and location of snake
-		Z[i] = i;
-	getFood();
-	printf("Enter the point that you want to win: ");
-	int point;
-	scanf("%d", &point);
-	while(len <= point)
-	{
-		getKey();
-		if(state[h][v] != 'o')
+		for(int i = 0; i < 10; i++)//initialization array to save snake location
 		{
-			getFood();
+			Z[i] = 0;
+			H[i] = 0;
 		}
-		switch(f)
+		for(int i = 0; i < len; i++)//initialization first length and location of snake
+			Z[i] = i;
+		getFood();
+		printf("Enter the point that you want to win: ");
+		int point;
+		scanf("%d", &point);
+		getchar();
+		while(len <= point)
 		{
-			case 'w':
-				if(H[len - 1] - 1 < 0)
-				{
-					SET_COLOR(4);
-					printf("You're touch the wall!");
-					return 0;
-				}
-				else if(H[len - 1] - 1 == h && Z[len - 1] == v)//if the snake eat food
-				{
-					H[len] = h;
-					Z[len] = v;
-					len++;
+			getKey();
+			if(state[h][v] != 'o')
+			{
+				getFood();
+			}
+			switch(f)
+			{
+				case 'w':
+					if(H[len - 1] - 1 < 0)
+					{
+						SET_COLOR(4);
+						printf("You're touch the wall!\n");
+						playAgain();
+					}
+					else if(H[len - 1] - 1 == h && Z[len - 1] == v)//if the snake eat food
+					{
+						H[len] = h;
+						Z[len] = v;
+						len++;
+						break;
+					} 
+					up();
+					playAgain();
 					break;
-				} 
-				up();
-				break;
-			case 's':
-				if(H[len - 1] + 1 >= 10)
-				{
-					SET_COLOR(4);
-					printf("You're touch the wall!");
-					return 0;
-				}
-				else if(H[len - 1] + 1 == h && Z[len - 1] == v)//if the snake eat food
-				{
-					H[len] = h;
-					Z[len] = v;
-					len++;
+				case 's':
+					if(H[len - 1] + 1 >= 10)
+					{
+						SET_COLOR(4);
+						printf("You're touch the wall!\n");
+						return 0;
+					}
+					else if(H[len - 1] + 1 == h && Z[len - 1] == v)//if the snake eat food
+					{
+						H[len] = h;
+						Z[len] = v;
+						len++;
+						break;
+					} 
+					down();
 					break;
-				} 
-				down();
-				break;
-			case 'a':
-				if(Z[len - 1] - 1 < 0)
-				{
-					SET_COLOR(4);
-					printf("You're touch the wall!");
-					return 0;
-				}
-				else if(H[len - 1] == h && Z[len - 1] - 1 == v)//if the snake eat food
-				{
-					H[len] = h;
-					Z[len] = v;
-					len++;
+				case 'a':
+					if(Z[len - 1] - 1 < 0)
+					{
+						SET_COLOR(4);
+						printf("You're touch the wall!\n");
+						return 0;
+					}
+					else if(H[len - 1] == h && Z[len - 1] - 1 == v)//if the snake eat food
+					{
+						H[len] = h;
+						Z[len] = v;
+						len++;
+						break;
+					} 
+					left();
 					break;
-				} 
-				left();
-				break;
-			case 'd':
-				if(Z[len - 1] + 1 >= 20)
-				{
-					SET_COLOR(4);
-					printf("You're touch the wall!");
-					return 0;
-				}
-				else if(H[len - 1] == h && Z[len - 1] + 1== v)//if the snake eat food
-				{
-					H[len] = h;
-					Z[len] = v;
-					len++;
+				case 'd':
+					if(Z[len - 1] + 1 >= 20)
+					{
+						SET_COLOR(4);
+						printf("You're touch the wall!\n");
+						return 0	;
+					}
+					else if(H[len - 1] == h && Z[len - 1] + 1== v)//if the snake eat food
+					{
+						H[len] = h;
+						Z[len] = v;
+						len++;
+						break;
+					} 
+					right();
 					break;
-				} 
-				right();
-				break;
+			}
+			printState();
 		}
-		printState();
-	}
-	printf("You Win!");
-	system("Pause");
+		printf("You Win!\n");
+		system("Pause");
+	//}
 	return 0;
 }
