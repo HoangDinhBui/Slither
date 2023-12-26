@@ -116,26 +116,14 @@ void down()
 	}
 	H[len - 1]++;//move snake's head into down side
 }
-bool playAgain()
-{
-	char choice;
-	scanf("%c", &choice);
-	if(choice != 'y' && choice != 'Y')
-	{
-		printf("You're existing the game!\n");
-		return false;
-	}
-	return true;
-}
 int main()
 {
-	//while(playAgain())
-	//{
 		int speed;
 		printf("Enter the level of difficult: ");
 		scanf("%d", &speed);
 		if(speed < 100 || speed > 1000)
 		{
+			SET_COLOR(4);
 			printf("The difficult level is not valid!");
 			return 0;
 		}
@@ -173,7 +161,6 @@ int main()
 					{
 						SET_COLOR(4);
 						printf("You're touch the wall!\n");
-						playAgain();
 					}
 					else if(H[len - 1] - 1 == h && Z[len - 1] == v)//if the snake eat food
 					{
@@ -183,7 +170,6 @@ int main()
 						break;
 					} 
 					up();
-					playAgain();
 					break;
 				case 's':
 					if(H[len - 1] + 1 >= 10)
@@ -238,6 +224,5 @@ int main()
 		}
 		printf("You Win!\n");
 		system("Pause");
-	//}
 	return 0;
 }
