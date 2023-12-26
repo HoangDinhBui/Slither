@@ -75,46 +75,94 @@ void getKey()
 //Fucntion of left direction
 void left()
 {
+	int newHeadX = Z[len - 1] - 1;
+    int newHeadY = H[len - 1];
+    // Check if the new head position collides with the snake's body
+    for (int i = 0; i < len - 1; i++)
+    {
+        if (newHeadX == Z[i] && newHeadY == H[i])
+        {
+            SET_COLOR(4);
+            printf("You touched the body!\n");
+            return;
+        }
+    }
 	state[H[0]][Z[0]] = '-';//assign '-' into snake's head location before move
 	for(int i = 0; i < len - 1; i++)//start a loop to move the snake to the left side
 	{
 		Z[i] = Z[i + 1];
 		H[i] = H[i + 1]; 
 	}
-	Z[len - 1]--;//move snake's head into left side
+	Z[len - 1] = newHeadX;//move snake's head into left side
 }
 //Function of right direction
 void right()
 {
+	int newHeadX = Z[len - 1] + 1;
+    int newHeadY = H[len - 1];
+    // Check if the new head position collides with the snake's body
+    for (int i = 0; i < len - 1; i++)
+    {
+        if (newHeadX == Z[i] && newHeadY == H[i])
+        {
+            SET_COLOR(4);
+            printf("You touched the body!\n");
+            return;
+        }
+    }
 	state[H[0]][Z[0]] = '-';//assign '-' into snake's head location before move
 	for(int i = 0; i < len - 1; i++)//start a loop to move the snake to the left side
 	{
 		Z[i] = Z[i + 1];
 		H[i] = H[i + 1]; 
 	}
-	Z[len - 1]++;//move snake's head into right side	
+	Z[len - 1] = newHeadX;//move snake's head into right side	
 }
 //Function of up direction
 void up()
 {
+	int newHeadX = Z[len - 1];
+    int newHeadY = H[len - 1] - 1;
+    // Check if the new head position collides with the snake's body
+    for (int i = 0; i < len - 1; i++)
+    {
+        if (newHeadX == Z[i] && newHeadY == H[i])
+        {
+            SET_COLOR(4);
+            printf("You touched the body!\n");
+            return;
+        }
+    }
 	state[H[0]][Z[0]] = '-';//assign '-' into snake's head location before move
 	for(int i = 0; i < len - 1; i++)//start a loop to move the snake to the up side
 	{
 		Z[i] = Z[i + 1];
 		H[i] = H[i + 1]; 
 	}
-	H[len - 1]--;//move snake's head into up side
+	H[len - 1] = newHeadY;//move snake's head into up side
 }
 //Function of down direction
 void down()
 {
+	int newHeadX = Z[len - 1];
+    int newHeadY = H[len - 1] + 1;
+    // Check if the new head position collides with the snake's body
+    for (int i = 0; i < len - 1; i++)
+    {
+        if (newHeadX == Z[i] && newHeadY == H[i])
+        {
+            SET_COLOR(4);
+            printf("You touched the body!\n");
+            return;
+        }
+    }
 	state[H[0]][Z[0]] = '-';//assign '-' into snake's head location before move
 	for(int i = 0; i < len - 1; i++)//start a loop to move the snake to the down side
 	{
 		Z[i] = Z[i + 1];
 		H[i] = H[i + 1]; 
 	}
-	H[len - 1]++;//move snake's head into down side
+	H[len - 1] = newHeadY;//move snake's head into down side
 }
 int main()
 {
